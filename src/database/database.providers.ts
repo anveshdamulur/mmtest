@@ -15,7 +15,6 @@ export const databaseProviders = [
       } else if (process.env.NODE_ENV === PRODUCTION) {
         config = configObj.production;
       }
-
       const sequelize = new Sequelize(config);
       sequelize.addModels([User]);
       await sequelize.sync();

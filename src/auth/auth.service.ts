@@ -11,10 +11,11 @@ import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt-payload.interface';
+import { USER_REPOSITORY } from 'src/constants/constants';
 @Injectable()
 export class UserService {
   constructor(
-    @Inject('USER_REPOSITORY')
+    @Inject(USER_REPOSITORY)
     private userRepository: typeof User,
     private jwtService: JwtService,
   ) {}

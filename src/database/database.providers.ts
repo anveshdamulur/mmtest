@@ -16,6 +16,7 @@ export const databaseProviders = [
         config = configObj.production;
       }
       const sequelize = new Sequelize(config);
+      //import models
       sequelize.addModels([User]);
       await sequelize.sync();
       return sequelize;

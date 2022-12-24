@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
   Post,
@@ -12,8 +11,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.entity';
 import { UserService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
+import { SignInDto } from './dto/SignIn.dto';
 
-@Controller('user')
+@Controller('v1/api/auth')
 export class UserController {
   constructor(private userService: UserService) {}
   @Get()
@@ -25,23 +25,17 @@ export class UserController {
     return this.userService.signUp(createUserDto);
   }
   @Post('signin')
-  signin(
-    @Body() createUserDto: CreateUserDto,
-  ): Promise<{ jwtAccessToken: string }> {
-    return this.userService.signIn(createUserDto);
+  signin(@Body() signInDto: SignInDto): Promise<{ jwtAccessToken: string }> {
+    return this.userService.signIn(signInDto);
   }
   @Get('/:id')
   findById(@Param('id') id: string): Promise<User> {
     return this.userService.findById(id);
   }
-  @Delete('/:id')
-  deleteUser(@Param('id') id: string): Promise<void> {
-    return this.userService.deleteUser(id);
-  }
 
   @Post('/test')
   @UseGuards(AuthGuard())
   test(@Req() req) {
-    console.log(req);
+    console.log(req.user);
   }
 }

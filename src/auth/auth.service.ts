@@ -12,6 +12,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt-payload.interface';
 import { USER_REPOSITORY } from 'src/constants/constants';
+import { SignInDto } from './dto/SignIn.dto';
 @Injectable()
 export class UserService {
   constructor(
@@ -19,10 +20,11 @@ export class UserService {
     private userRepository: typeof User,
     private jwtService: JwtService,
   ) {}
-
+  // todo find all user if you are admin user
   async findAllUser(): Promise<User[]> {
     return this.userRepository.findAll<User>();
   }
+  // todo find all user if you are admin user
   async findById(id: string): Promise<User> {
     const findUser = await this.userRepository.findByPk(id);
     if (!findUser) {
@@ -30,6 +32,8 @@ export class UserService {
     }
     return findUser;
   }
+
+  // Sign up user
   async signUp(createUserDto: CreateUserDto): Promise<void> {
     const { username, email, password } = createUserDto;
 
@@ -52,25 +56,16 @@ export class UserService {
       }
     }
   }
-
-  async signIn(
-    createUserDto: CreateUserDto,
-  ): Promise<{ jwtAccessToken: string }> {
-    const { username, password } = createUserDto;
+  // Sign user
+  async signIn(signInDto: SignInDto): Promise<{ jwtAccessToken: string }> {
+    const { username, password } = signInDto;
     const user = await this.userRepository.findOne({ where: { username } });
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { username };
       const jwtAccessToken = await this.jwtService.sign(payload);
       return { jwtAccessToken };
     } else {
-      throw new UnauthorizedException('Please check your password');
-    }
-  }
-
-  async deleteUser(id: string): Promise<void> {
-    const deleteUser = await this.userRepository.destroy({ where: { id } });
-    if (deleteUser === 0) {
-      throw new NotFoundException(`Use with id ${id} not found`);
+      throw new UnauthorizedException('Please check your password or username');
     }
   }
 }

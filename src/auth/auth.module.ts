@@ -21,4 +21,4 @@ import { jwtObj } from './jwt.config';
   providers: [UserService, ...UsersRepository, JwtStrategy],
   exports: [JwtStrategy, PassportModule],
 })
-export class UserModule {}
+export class AuthModule {}

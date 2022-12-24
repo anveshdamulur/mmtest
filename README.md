@@ -44,15 +44,21 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+# Pre requisites
+ $ VS Code
+ $ Postman or Insomnia
+ $ Docker
+ $ MySql Workbench
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
+# How it works
+1. Once you have above requirements.
+2. To test the backend end point prefer to use postman or Insomnia
+3. The database is running on the docker.
+  To run the dabase jsut run this command on local terminal.
+  $ doker run --name mysql -e MYSQL_ROOT_PASSWORD=yourpass MYSQL_DATABASE=dbname -d -p 3306:3306 mysql:latest
+4. To start myql use this cmd : $ docker start mysql
+5. Once its running you good to go and check your endpoints by running server 
+  $ npm run start:dev
 
 # test coverage
 $ npm run test:cov

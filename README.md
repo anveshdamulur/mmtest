@@ -74,7 +74,7 @@ $ npm run start:prod
 5. I have used Bcrypt and JWT.
 6. Bcrypt is used to hash the passwords. I can simple use SHA 256 alog and salt it to encrypt my password but there is a possibility of attacks by using Rainbow tables.
 7. Jwt is used for taken genaration. It will check user giving password and already stored that user password and returs true if both match and genarates token for that particular user.
-8. Once token create I simply use the middleware to protect another routes if they have header with token key. (i need to implement more via securities but it will out of my time box and need to learn more on nest Gaurd methods).
+8. Once token create I simply use the middleware to protect another routes if they have header with token key. http://localhost:3001/v1/api/auth/test (i need to implement more via securities but it will out of my time box and need to learn more on nest Gaurd methods).
 9. But I jest simple used this token and tested one endpoint to see I am getting proper user on that token.
 10. Now my api is working for auth services and it can communicate with front end.
 11. finally all protected values stored in .env file. (used dotenv)

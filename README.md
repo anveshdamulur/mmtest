@@ -45,10 +45,10 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 # Pre requisites
- $ VS Code
- $ Postman or Insomnia
- $ Docker
- $ MySql Workbench
+ 1. VS Code
+ 2. Postman or Insomnia
+ 3. Docker
+ 4. MySql Workbench
 
 # How it works
 **SET UP**

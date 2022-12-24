@@ -80,9 +80,8 @@ $ npm run start:prod
 11. Now my api is working for auth services and it can communicate with front-end.
 12. finally all protected values stored in .env file. (used dotenv)
 
-## Support
+Thank you
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
@@ -91,5 +90,6 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
+
 
 Nest is [MIT licensed](LICENSE).
